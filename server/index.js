@@ -5,7 +5,9 @@ const app = express();
 
 app.get('/', (req, res) => res.send('Welcome to this peerjs server'));
 
-const server = app.listen(9000);
+const PORT = process.env.PORT || 9000;
+
+const server = app.listen(PORT);
 
 const peerServer =  ExpressPeerServer(server);
 
