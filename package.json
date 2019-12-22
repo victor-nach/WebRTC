@@ -1,0 +1,28 @@
+{
+  "name": "webrtc-peer",
+  "version": "1.0.0",
+  "description": "webrtc implementation using peerjs",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor-nach/WebRTC.git"
+  },
+  "author": "Iheanacho Victor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/victor-nach/WebRTC/issues"
+  },
+  "homepage": "https://github.com/victor-nach/WebRTC#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "peer": "^0.2.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
