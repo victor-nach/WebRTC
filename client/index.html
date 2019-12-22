@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script src="peerjs.min.js"></script>
+    <script>
+        // to get an id, you need to pass in a server
+        // const peer = new Peer(); 
+
+        // make a connection to the first peer
+        const peer = new Peer({ host: 'localhost', port: 9000, path: '/peer' });
+        peer.on('open', () => {
+            console.log(peer.id);
+        });
+
+        // make a connection with the second peer
+        const peer2 = new Peer({ host: 'localhost', port: 9000, path: '/peer' });
+
+        // wait for the connection to be open
+        peer2.on('open', () => {
+            console.log(peer2.id);
+
+            // connect to the first peer
+            const conn = peer2.connect(peer.id);
+            conn.on('open', () => {
+                console.log('shii worked');
+                conn.send('peer2: your welcome bro');
+                conn.on('data', data => console.log('data', data));
+            });
+
+
+        });
+
+        // when the first peer gets a connection
+        peer.on('connection', (conn) => {
+            console.log('peer one received connection');
+            conn.on('open', () => {
+                conn.on('data', data => console.log('data2', data));
+                conn.send('peer1: your welcome bro');
+            });
+        });
+
+        // ?? only one peer receives the connection 
+        // when the second peer gets a connection
+        // peer2.on('connection', (conn) => {
+        //     console.log('peer two received connection')
+        //     conn.on('data', data => console.log(data));
+        // });
+
+    </script>
+</body>
+
+</html>
