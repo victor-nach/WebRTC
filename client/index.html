@@ -17,13 +17,23 @@
         // const peer = new Peer(); 
 
         // make a connection to the first peer
-        const peer = new Peer({ host: 'localhost', port: 9000, path: '/peer' });
+        const peer = new Peer({ 
+            secure: true,
+            host: 'ancient-falls-10796.herokuapp.com',
+            path: '/peer',
+            port: 443
+        })
         peer.on('open', () => {
             console.log(peer.id);
         });
 
         // make a connection with the second peer
-        const peer2 = new Peer({ host: 'localhost', port: 9000, path: '/peer' });
+        const peer2 = new Peer({ 
+            secure: true,
+            host: 'ancient-falls-10796.herokuapp.com',
+            path: '/peer',
+            port: 443
+        });
 
         // wait for the connection to be open
         peer2.on('open', () => {
